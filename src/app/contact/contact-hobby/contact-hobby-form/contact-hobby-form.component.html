@@ -1,0 +1,20 @@
+<div>
+	<form (ngSubmit)="saveHobby()">
+
+		<div class="form-group">
+      <label >Hobby</label>
+      <br/>
+      <select [(ngModel)]="hobby" (ngModelChange)="onValueChanged($event)" name="selectHobby">
+			<!--  <option >-- Select Hobby --</option> -->
+					<option *ngFor="let h of hobbyList" [ngValue]="h">{{h.title}}</option>
+      </select>
+    </div>
+		<button
+			type="submit"
+			class="btn btn-primary"
+			 >Add
+		 </button>
+		 
+
+	</form>
+</div>

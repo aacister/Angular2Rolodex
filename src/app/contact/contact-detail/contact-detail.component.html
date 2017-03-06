@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-2">
+
+    <h1>{{contact.first_name}} {{contact.last_name}}</h1>
+    <p>email: {{contact.email}}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-2">
+    <p>hobbies:
+      <a [routerLink]="['hobbies','new']" routerLinkActive="active">
+	Add
+		</a>
+		<a [routerLink]="['../', contact.id]">Cancel Add
+		</a>
+    </p>
+    <contact-hobby-list [contact]="contact"></contact-hobby-list>
+		<div style="margin-top: 5px;">
+		  <div>
+		    <button [routerLink]="['edit']" class="btn btn-primary">
+		      Edit
+		    </button>
+		    <button (click)="deleteContact()" class="btn btn-danger">
+		      Delete
+		    </button>
+		  </div>
+
+		</div>
+  </div>
+	<div class="col-md-4" style="margin-top: 5px;">
+		<router-outlet></router-outlet>
+	</div>
+</div>

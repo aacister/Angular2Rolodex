@@ -1,0 +1,31 @@
+<div>
+	<form (ngSubmit)="saveContact()">
+		<textinput
+		  [id]="first_name"
+			[name]="first_name"
+			label="First Name"
+			[(value)] = "contact.first_name"
+      placeholder = "Enter first name"
+			(valueChanged)="onValueChanged($event)" >
+		</textinput>
+		<textinput
+			[name]="last_name"
+			label="Last Name"
+			[(value)]="contact.last_name"
+      placeholder = "Enter last name"
+			(valueChanged)="onValueChanged($event)" >
+		</textinput>
+		<textinput
+			[name]="email"
+			label="Email"
+			[(value)]="contact.email"
+      placeholder = "Enter email"
+			(valueChanged)="onValueChanged($event)" >
+		</textinput>
+		<input
+			type="submit"
+			class="btn btn-primary"
+			 />
+
+	</form>
+</div>

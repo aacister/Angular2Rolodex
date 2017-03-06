@@ -1,0 +1,7 @@
+<hobby-listrow
+	*ngFor="let hobby of hobbyList"
+	[hobby]="hobby"
+	(click)="hobbySelected(hobby)"
+	[class.active]= "isSelected(hobby)"
+	>
+</hobby-listrow>

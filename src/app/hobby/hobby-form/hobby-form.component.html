@@ -1,0 +1,22 @@
+<div>
+	<form (ngSubmit)="saveContact()">
+		<textinput
+      type="text"
+			label="New Hobby"
+			[(value)] = "hobby.title"
+      placeholder = "Enter description"
+			(valueChanged)="onValueChanged($event)" >
+		</textinput>
+		<button
+			type="submit"
+			class="btn btn-primary"
+			 >Add</button>
+		<button
+		class="btn btn-info"
+		[routerLink]="['../']"
+		>
+			Cancel
+		</button>
+
+	</form>
+</div>

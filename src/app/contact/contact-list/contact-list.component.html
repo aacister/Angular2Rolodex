@@ -1,0 +1,19 @@
+<table  class="table">
+	<thead>
+		<tr>
+			<th>Name</th>
+	</tr>
+</thead>
+<tbody>
+	<tr><td>
+<contact-listrow
+	*ngFor="let contact of contactList"
+	[contact]="contact"
+	(click)="contactSelected(contact)"
+	[class.active]= "isSelected(contact)"
+	>
+</contact-listrow>
+	</td>
+</tr>
+</tbody>
+</table>
