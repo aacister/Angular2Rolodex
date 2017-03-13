@@ -1,14 +1,6 @@
 <div class="form-group">
-      <label [htmlFor]="name">{{label}}</label>
-      <div class="field">
-        <input
-          [id] = "id"
-          type="text"
-          [name]="name"
-          label="label"
-          class="form-control"
-          [placeholder]="placeholder"
-          [(ngModel)]="value"
-          (keyup)="onInputChange($event)" />
-      </div>
-    </div>
+  <label [htmlFor]="name">{{label}}</label>
+  <div class="field">
+    <input [id]="id" type="text" [name]="name" label="label" class="form-control" [placeholder]="placeholder" [(ngModel)]="value" (keyup)="onInputChange($event)" />
+  </div>
+</div>

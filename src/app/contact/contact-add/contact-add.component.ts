@@ -17,19 +17,14 @@ export class ContactAddComponent implements OnInit {
     private router: Router) {}
 
     ngOnInit(){
-    console.log ('inside ContactAddComponent OnInit');
 
     };
 
  addContact(contact){
- console.log('Adding Contact.'  + JSON.stringify(contact));
-  this.contactsService.saveContact(contact).subscribe(
-    (res: Contact) => {
-      this.contact = res;
-      this.resetContact();
-      this.router.navigate(['contact']);
-    }
-  );
+   this.contactsService.createContact(contact);
+   this.resetContact();
+   this.router.navigate(['contact']);
+
  }
 
  private resetContact(){

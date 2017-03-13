@@ -1,7 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { ContactContainerComponent } from './contact-container/contact-container.component';
 import { ContactAddComponent } from './contact-add/contact-add.component';
 import { ContactDetailComponent } from './contact-detail/contact-detail.component';
 import { ContactEditComponent } from './contact-edit/contact-edit.component';
@@ -12,7 +11,6 @@ import { ContactHomeComponent } from './contact-home/contact-home.component';
 import { ContactHobbyAddComponent } from './contact-hobby/contact-hobby-add/contact-hobby-add.component';
 import { ContactHobbyListComponent } from './contact-hobby/contact-hobby-list/contact-hobby-list.component';
 import { ContactHobbyFormComponent } from './contact-hobby/contact-hobby-form/contact-hobby-form.component';
-import { ContactResolver } from './contact-resolver.service';
 import { SharedModule, TextInputComponent} from '../shared';
 
 const contactRouting: ModuleWithProviders = RouterModule.forChild([
@@ -29,9 +27,6 @@ const contactRouting: ModuleWithProviders = RouterModule.forChild([
       {
         path: ':id',
         component: ContactDetailComponent,
-        resolve: {
-          contact: ContactResolver
-        },
 
         children:
         [
@@ -43,20 +38,18 @@ const contactRouting: ModuleWithProviders = RouterModule.forChild([
       },
       {
         path: ':id/edit',
-        component: ContactEditComponent,
-        resolve: {
-          contact: ContactResolver
-        }
+        component: ContactEditComponent
       }
 
     ]
   },
   {
     path: '',
-    redirectTo: 'contact',
+    redirectTo: '/contact',
     pathMatch: 'full'
   }
 ]);
+
 
 @NgModule({
   imports: [
@@ -64,7 +57,6 @@ const contactRouting: ModuleWithProviders = RouterModule.forChild([
     contactRouting
   ],
   declarations: [
-    ContactContainerComponent,
     ContactHomeComponent,
     ContactAddComponent,
     ContactDetailComponent,
@@ -77,6 +69,6 @@ const contactRouting: ModuleWithProviders = RouterModule.forChild([
     ContactHobbyFormComponent
   ],
 
-  providers: [ContactResolver]
+  providers: []
 })
 export class ContactModule { }

@@ -3,8 +3,8 @@ export class Hobby {
   title: string;
 
   constructor(id: number, title: string) {
-      this.id = id;
-      this.title = title;
-    }
+    this.id = id;
+    this.title = title;
+  }
 
 }

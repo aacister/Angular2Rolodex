@@ -1,7 +1,5 @@
 <hobby-listrow
-	*ngFor="let hobby of hobbyList"
+	*ngFor="let hobby of hobbyList | async"
 	[hobby]="hobby"
-	(click)="hobbySelected(hobby)"
-	[class.active]= "isSelected(hobby)"
 	>
 </hobby-listrow>

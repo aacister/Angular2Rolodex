@@ -13,7 +13,6 @@ export class ContactFormComponent {
  constructor() {}
 
  ngOnInit(){
-  console.log('Contact in form: ' + JSON.stringify(this.contact));
  }
 	@Input() contact: Contact;
   @Output() onContactSave = new EventEmitter<Contact>();
@@ -28,18 +27,14 @@ export class ContactFormComponent {
   }
 
   saveContact(){
-    console.log('Saving contact');
     if(this.isContactValid())
     {
-      console.log('Is valid');
       this.onContactSave.emit(this.contact);
     }
-    else
-      console.log('Is not valid');
+
   }
 
   private isContactValid(){
-    console.log('Validating: ' + JSON.stringify(this.contact));
     if(this.contact.email.length>0 && this.contact.first_name.length>0 && this.contact.email.length>0)
       return true;
     else

@@ -7,10 +7,8 @@
 <tbody>
 	<tr><td>
 <contact-listrow
-	*ngFor="let contact of contactList"
+	*ngFor="let contact of contactList | async"
 	[contact]="contact"
-	(click)="contactSelected(contact)"
-	[class.active]= "isSelected(contact)"
 	>
 </contact-listrow>
 	</td>

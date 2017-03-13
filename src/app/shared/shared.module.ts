@@ -26,4 +26,4 @@ import {TextInputComponent} from './common/common-textinput/common-textinput.com
     TextInputComponent
   ]
 })
-export class SharedModule {}
+export class SharedModule { }

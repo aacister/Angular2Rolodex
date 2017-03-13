@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import { Observable } from 'rxjs/Rx';
+
 import {Contact, ContactsService} from '../../shared';
 
 
@@ -9,31 +11,21 @@ import {Contact, ContactsService} from '../../shared';
 })
 
 export class ContactListComponent implements OnInit{
- private contactList: Contact[];
- private currentContact: Contact;
+ private contactList: Observable<Contact[]>;
 
 	constructor(
 		private contactsService: ContactsService
-	) {}
+	) {
+
+	}
 
 	ngOnInit() {
-		this.contactsService.getAllContacts().subscribe(
-		(contacts: Contact[]) => {
-			this.contactList = contacts;
-		}
-		);
+
+		this.contactList = this.contactsService.contacts;
+		this.contactsService.getAllContacts();
 
 	}
 
-	contactSelected(contact){
-		this.currentContact = contact;
-	}
 
-	isSelected(contact): boolean {
-		if(!this.currentContact){
-			return false;
-		}
-		return this.currentContact.id === contact.id ? true: false;
-	}
 
 }

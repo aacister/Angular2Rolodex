@@ -6,5 +6,4 @@ export * from './contact-list';
 export * from './contact-listrow';
 export * from './contact-form';
 export * from './contact-hobby';
-export * from './contact-container';
 export * from './contact.module';

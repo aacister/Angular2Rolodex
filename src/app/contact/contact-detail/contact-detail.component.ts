@@ -1,5 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs/Rx';
+
 
 import {Contact, ContactsService} from '../../shared';
 
@@ -11,31 +13,45 @@ import {Contact, ContactsService} from '../../shared';
 })
 
 export class ContactDetailComponent  {
-
-  contact: Contact = new Contact(0, '', '', '', []);
+  private contactList: Observable<Contact[]>;
+  private contactId: string | number;;
+  private updatedContactList: Contact[] = [];
+  private contact: Contact;
 
  constructor(private contactsService: ContactsService,
  private route: ActivatedRoute,
-    private router: Router) {}
+    private router: Router) {
+
+    }
 
  ngOnInit() {
-    // Retrieve the prefetched contact
-    this.route.data.subscribe(
-      (data: { contact: Contact }) => {
-        this.contact = data.contact;
+
+ this.route.params.subscribe(params => {
+      this.contactId = params['id'];
+
+      //if an update, filter list by new id and assign to this.contact
+      if(this.updatedContactList.length > 0){
+        let filteredContactList = this.updatedContactList.filter(contact => contact.id === this.contactId);
+        this.contact = filteredContactList[0];
       }
-    );
+
+    });
+
+   this.contactList = this.contactsService.contacts;
+   this.contactsService.contacts.subscribe(updatedContacts => {
+     this.updatedContactList = updatedContacts;
+     let filteredContactList = updatedContacts.filter(contact => contact.id === this.contactId);
+     this.contact = filteredContactList[0];
+   });
+   this.contactsService.getAllContacts();
+
   }
 
-
- deleteContact()
+ deleteContact(contact)
  {
-  console.log('Deleting contact: ' + this.contact.id);
-   this.contactsService.deleteContact(this.contact.id).subscribe(
-     () => {
-       this.router.navigate(['contact']);
-     }
-   );
+    this.contactsService.deleteContact(contact.id);
+    this.router.navigate(['contact']);
+
  }
 
 }

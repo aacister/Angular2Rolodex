@@ -10,22 +10,22 @@ import { HobbyAddComponent } from './hobby-add/hobby-add.component';
 import { HobbyFormComponent } from './hobby-form/hobby-form.component';
 
 const hobbyRouting: ModuleWithProviders = RouterModule.forChild([
-{
-  path: 'hobby',
-  component: HobbyHomeComponent,
-  children:
-  [
-    {
-      path: 'new',
-      component: HobbyAddComponent
-    }
-  ]
-},
-{
+  {
+    path: 'hobby',
+    component: HobbyHomeComponent,
+    children:
+    [
+      {
+        path: 'new',
+        component: HobbyAddComponent
+      }
+    ]
+  },
+  {
     path: '',
     redirectTo: '/hobby',
     pathMatch: 'full'
- }
+  }
 ]);
 
 @NgModule({
@@ -34,12 +34,12 @@ const hobbyRouting: ModuleWithProviders = RouterModule.forChild([
     hobbyRouting
   ],
   declarations: [
-  HobbyListComponent,
-  HobbyListRowComponent,
-  HobbyHomeComponent,
-  HobbyAddComponent,
-  HobbyFormComponent],
+    HobbyListComponent,
+    HobbyListRowComponent,
+    HobbyHomeComponent,
+    HobbyAddComponent,
+    HobbyFormComponent],
 
   providers: []
 })
-export class HobbyModule {}
+export class HobbyModule { }

@@ -28,8 +28,6 @@ export class HobbyFormComponent {
     {
       this.onHobbySave.emit(this.hobby);
     }
-    else
-      console.log('Is not valid');
   }
 
   private isHobbyValid(){

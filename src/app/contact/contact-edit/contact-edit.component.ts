@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import { Observable } from 'rxjs/Rx';
 
 import {Contact, ContactsService} from '../../shared';
 
@@ -10,31 +11,34 @@ import {Contact, ContactsService} from '../../shared';
 })
 
 export class ContactEditComponent implements OnInit{
- private contact: Contact = new Contact(0,'', '', '', []);
+ private contact: Contact;
+ private contactList: Observable<Contact[]>;
+ private contactId: string | number;;
+ private updatedContactList: Contact[] = [];
 
  constructor(private contactsService: ContactsService,
               private route: ActivatedRoute,
               private router: Router) {}
 
  ngOnInit(){
-  this.route.data.subscribe(
-    (data: {contact: Contact}) => {
-    if(data.contact){
-      this.contact = data.contact;
-      }
+    this.route.params.subscribe(params => {
+         this.contactId = params['id'];
+    });
 
-    }
-  );
+    this.contactList = this.contactsService.contacts;
+    this.contactsService.contacts.subscribe(updatedContacts => {
+      this.updatedContactList = updatedContacts;
+      let filteredContactList = updatedContacts.filter(contact => contact.id === this.contactId);
+      this.contact = filteredContactList[0];
+    });
+    this.contactsService.getAllContacts();
+
  }
 
 
  editContact(contact){
- console.log('Editing contact: ' + JSON.stringify(contact));
-  this.contactsService.saveContact(contact).subscribe(
-    (res: Contact) => {
-      this.router.navigateByUrl('/');
-    }
-  );
+  this.contactsService.updateContact(contact);
+  this.router.navigate(['contact']);
  }
 
 }

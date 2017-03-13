@@ -10,7 +10,6 @@ export class HobbyHomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('Entering Hobby Home.');
   }
 
 }

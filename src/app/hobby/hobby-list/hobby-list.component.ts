@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import { Observable } from 'rxjs/Rx';
+
 import {Hobby, HobbiesService} from '../../shared';
 
 
@@ -9,31 +11,18 @@ import {Hobby, HobbiesService} from '../../shared';
 })
 
 export class HobbyListComponent implements OnInit{
- private hobbyList: Hobby[];
+ private hobbyList: Observable<Hobby[]>;
  private currentHobby: Hobby;
 
 	constructor(
 		private hobbiesService: HobbiesService
 	) {}
 
-	ngOnInit() {
-		this.hobbiesService.getAllHobbies().subscribe(
-		(hobbies: Hobby[]) => {
-			this.hobbyList = hobbies;
-		}
-		);
+	ngOnInit(){
 
-	}
+		this.hobbyList = this.hobbiesService.hobbies;
+		this.hobbiesService.getAllHobbies();
 
-	hobbySelected(hobby){
-		this.currentHobby = hobby;
-	}
-
-	isSelected(hobby): boolean {
-		if(!this.currentHobby){
-			return false;
-		}
-		return this.currentHobby.id === hobby.id ? true: false;
 	}
 
 }

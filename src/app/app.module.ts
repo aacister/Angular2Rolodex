@@ -5,40 +5,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ContactModule} from './contact/contact.module';
 import { HobbyModule} from './hobby/hobby.module';
-import { AuthModule } from './auth/auth.module';
+
 
 import {
 SharedModule,
-  ApiService,
-  ContactsService,
-  HobbiesService,
-  JwtService,
-  UserService,
-  HeaderComponent,
-  FooterComponent
+ApiService,
+ContactsService,
+HobbiesService,
+HeaderComponent,
+FooterComponent
 } from './shared';
 
-
-const rootRouting: ModuleWithProviders = RouterModule.forRoot([
-{
-  path: 'contact',
-  loadChildren: () => ContactModule
-},
-{
-  path: 'hobby',
-  loadChildren: () => HobbyModule
-},
-{
-  path: '',
-  redirectTo: '/contact',
-  pathMatch: 'full'
-}
-
-]);
+const rootRouting: ModuleWithProviders = RouterModule.forRoot([]);
 
 @NgModule({
   declarations: [
-  AppComponent,
+    AppComponent,
     HeaderComponent,
     FooterComponent
 
@@ -46,17 +28,14 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   imports: [
     BrowserModule,
     SharedModule,
-    AuthModule,
     ContactModule,
     HobbyModule,
     rootRouting
   ],
   providers: [
-  ApiService,
+    ApiService,
     ContactsService,
-    HobbiesService,
-    JwtService,
-    UserService
+    HobbiesService
   ],
   bootstrap: [AppComponent]
 })
