@@ -1,4 +1,4 @@
-import {Hobby, HobbiesService} from '../../Shared';
+import {Hobby} from './hobby.model';
 
 export class Contact {
   id: number;
