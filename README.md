@@ -2,11 +2,13 @@
 
 An angular 2 application that consumes data from the Angular2RolodexAPI project(Express/Node server layer, and MongoDb storage).  Users can create, edit, delete, filter and view contacts.
 
-Modeled to reflect ReactReduxRolodex application.  But includes additional functionality of master-detail layout, and more advanced routing. Follows unidirectional data flow pattern with one predictable and consistent data source, to reflect Redux data store pattern.
+Modeled to reflect ReactReduxRolodex application. Includes additional functionality of master-detail layout, and tiered routing. Follows unidirectional data-flow pattern.
 
 Uses:
 
 Angular 2
+Typescript
+RxJs
 NodeJS
 ExpressJS
 MongoDb
