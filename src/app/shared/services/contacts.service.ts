@@ -6,8 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { ApiService} from './api.service';
-import { HobbiesService } from './hobbies.service';
-import { Contact, Hobby } from '../models';
+import { Contact, Hobby} from '../models';
 
 @Injectable()
 export class ContactsService {
@@ -19,7 +18,6 @@ export class ContactsService {
 
   constructor(
     private apiService: ApiService,
-    private hobbiesService: HobbiesService
     ) {
     this.dataStore = { contacts: [] };
     this._contacts = new BehaviorSubject([]);
