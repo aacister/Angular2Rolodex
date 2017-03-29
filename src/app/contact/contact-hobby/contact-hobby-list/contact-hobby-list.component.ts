@@ -10,10 +10,10 @@ import {Contact, Hobby, ContactsService} from '../../../shared';
 })
 export class ContactHobbyListComponent implements OnChanges {
 
-  hobbies: Array<Hobby>;
   private contactList: Observable<Contact[]>;
 
   @Input() contact: Contact;
+  @Input() hobbies: Hobby[];
 
   constructor(private contactsService: ContactsService,
     private route: ActivatedRoute,
@@ -24,12 +24,16 @@ export class ContactHobbyListComponent implements OnChanges {
   ngOnInit() {
     this.contactList = this.contactsService.contacts;
     this.contactList.subscribe(contacts => {
-      let filteredContactList = contacts.filter(contact => contact.id === this.contact.id);
-      this.contact = filteredContactList[0];
-      this.hobbies = this.contact.hobbies;
+
+      let filteredContactList = contacts.filter(contact => contact._id === this.contact._id);
+      if(filteredContactList.length>0){
+        this.contact = filteredContactList[0];
+        this.hobbies = this.contact.hobbies;
+      }
     });
     this.contactsService.getAllContacts();
   }
+
 
   ngOnChanges(changes: { [propName: string]: SimpleChange }) {
     this.hobbies = this.contact.hobbies;

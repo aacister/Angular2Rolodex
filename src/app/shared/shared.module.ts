@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import {TextInputComponent} from './common/common-textinput/common-textinput.component';
+import { CheckboxInputComponent } from './common/common-checkboxinput/common-checkboxinput.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import {TextInputComponent} from './common/common-textinput/common-textinput.com
     RouterModule
   ],
   declarations: [
-    TextInputComponent
+    TextInputComponent,
+    CheckboxInputComponent
   ],
   exports: [
     CommonModule,
@@ -23,7 +25,8 @@ import {TextInputComponent} from './common/common-textinput/common-textinput.com
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    TextInputComponent
+    TextInputComponent,
+    CheckboxInputComponent
   ]
 })
 export class SharedModule { }

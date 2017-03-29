@@ -1,31 +1,42 @@
 <div>
 	<form (ngSubmit)="saveContact()">
 		<textinput
-		  [id]="first_name"
+		  	[id]="first_name"
 			[name]="first_name"
 			label="First Name"
 			[(value)] = "contact.first_name"
-      placeholder = "Enter first name"
+      			placeholder = "Enter first name"
 			(valueChanged)="onValueChanged($event)" >
 		</textinput>
 		<textinput
 			[name]="last_name"
 			label="Last Name"
 			[(value)]="contact.last_name"
-      placeholder = "Enter last name"
+      			placeholder = "Enter last name"
 			(valueChanged)="onValueChanged($event)" >
 		</textinput>
 		<textinput
 			[name]="email"
 			label="Email"
 			[(value)]="contact.email"
-      placeholder = "Enter email"
+      			placeholder = "Enter email"
 			(valueChanged)="onValueChanged($event)" >
 		</textinput>
+		<h4>Hobbies</h4>
+		<checkboxinput
+			*ngFor="let hobby of hobbies"
+			[name]="hobby.title"
+			[label]="hobby.title"
+			[value]="hobby.title"
+			[checked] = "hobby.checked"
+			(checkChanged) = "updateContactHobbies($event)"
+		>
+		</checkboxinput>
+
 		<input
 			type="submit"
 			class="btn btn-primary"
-			 />
+		/>
 
 	</form>
 </div>

@@ -1,7 +1,7 @@
 import {Hobby} from './hobby.model';
 
 export class Contact {
-  id: number;
+  _id: number;
   email: string;
   first_name: string;
   last_name: string;
@@ -12,7 +12,7 @@ export class Contact {
     first_name: string,
     last_name: string,
     hobbies: Array<Hobby>) {
-    this.id = id;
+    this._id = id;
     this.email = email;
     this.first_name = first_name;
     this.last_name = last_name;

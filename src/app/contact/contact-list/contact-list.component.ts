@@ -12,6 +12,7 @@ import {Contact, ContactsService} from '../../shared';
 
 export class ContactListComponent implements OnInit{
  private contactList: Observable<Contact[]>;
+ private updatedContactList: Contact[] = [];
 
 	constructor(
 		private contactsService: ContactsService
@@ -22,7 +23,11 @@ export class ContactListComponent implements OnInit{
 	ngOnInit() {
 
 		this.contactList = this.contactsService.contacts;
+		this.contactList.subscribe(updatedContacts => {
+			this.updatedContactList = updatedContacts;
+		})
 		this.contactsService.getAllContacts();
+
 
 	}
 

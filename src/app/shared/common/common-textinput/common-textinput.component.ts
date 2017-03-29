@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'textinput',
   templateUrl: './common-textinput.component.html',
-  styleUrls: ['./common-textinput.component.scss']
+  styleUrls: ['./common-textinput.component.css']
 })
 
 export class TextInputComponent {

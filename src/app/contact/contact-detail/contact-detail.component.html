@@ -7,6 +7,7 @@
 </div>
 <div class="row">
   <div class="col-md-6 col-md-offset-2">
+    <!--
     <p>hobbies:
       <span [hidden]="!canAdd">
       <button class="hobbyButton" [routerLink]="['hobbies','new']"  (click)="addClick()">
@@ -18,7 +19,8 @@
   </button>
 	</span>
     </p>
-    <contact-hobby-list [contact]="contact"></contact-hobby-list>
+  -->
+    <contact-hobby-list [contact]="contact" [hobbies]="contact.hobbies"></contact-hobby-list>
     <div style="margin-top: 5px;">
       <div>
         <button [routerLink]="['edit']" class="btn btn-primary">

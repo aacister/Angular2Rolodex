@@ -27,32 +27,23 @@ export class ContactDetailComponent {
 
   ngOnInit() {
 
+
     this.route.params.subscribe(params => {
       this.contactId = params['id'];
       this.canAdd = true;
-      //if an update, filter list by new id and assign to this.contact
-      if (this.updatedContactList.length > 0) {
-        let filteredContactList = this.updatedContactList.filter(contact => contact.id === this.contactId);
+
+      this.contactList=this.contactsService.contacts;
+      this.contactList.subscribe(updatedContacts => {
+        let filteredContactList = updatedContacts.filter(contact => contact._id === this.contactId);
         this.contact = filteredContactList[0];
-
-      }
-
+      })
     });
-
-    this.contactList = this.contactsService.contacts;
-    this.contactList.subscribe(updatedContacts => {
-      this.updatedContactList = updatedContacts;
-      let filteredContactList = updatedContacts.filter(contact => contact.id === this.contactId);
-      this.contact = filteredContactList[0];
-
-    });
-    this.contactsService.getAllContacts();
 
   }
 
   deleteContact(contact) {
-    this.contactsService.deleteContact(contact.id);
-    this.router.navigate(['contact']);
+    this.contactsService.deleteContact(contact._id);
+    this.router.navigate(['']);
   }
 
   addClick(event) {

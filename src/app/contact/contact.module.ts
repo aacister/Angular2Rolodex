@@ -26,15 +26,15 @@ const contactRouting: ModuleWithProviders = RouterModule.forChild([
       },
       {
         path: ':id',
-        component: ContactDetailComponent,
+        component: ContactDetailComponent
 
-        children:
+  /*      children:
         [
           {
             path: 'hobbies/new',
             component: ContactHobbyAddComponent
           }
-        ]
+        ] */
       },
       {
         path: ':id/edit',

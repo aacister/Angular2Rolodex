@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {Contact} from '../../shared';
+import {Contact, Hobby} from '../../shared';
+
 
 @Component({
  selector: 'contact-form',
@@ -15,6 +16,7 @@ export class ContactFormComponent {
  ngOnInit(){
  }
 	@Input() contact: Contact;
+	@Input() hobbies: Array<any>;
   @Output() onContactSave = new EventEmitter<Contact>();
 
   onValueChanged($event){
@@ -26,7 +28,32 @@ export class ContactFormComponent {
       this.contact.email = $event.target.value;
   }
 
-  saveContact(){
+
+  updateContactHobbies(event) {
+      let contact = this.contact;
+      let hobbyTitle = event.target.value;
+      let hobby = this.hobbies.filter(hobby => hobby.title == hobbyTitle)[0];
+      let checked = !hobby.checked;
+      hobby['checked'] = checked;
+      if (checked) {
+        contact.hobbies.push(hobby);
+      } else {
+        let index=-1;
+        for(var i = 0; i < contact.hobbies.length; i++) {
+          if (contact.hobbies[i].title === hobby.title) {
+            index = i;
+            break;
+          }
+        }
+        if(index > -1)
+          contact.hobbies.splice(index);
+      }
+      this.contact = contact;
+
+
+    }
+
+    saveContact(){
     if(this.isContactValid())
     {
       this.onContactSave.emit(this.contact);
@@ -40,4 +67,6 @@ export class ContactFormComponent {
     else
       return false;
   }
+
+
 }

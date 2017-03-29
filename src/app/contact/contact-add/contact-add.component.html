@@ -1,8 +1,8 @@
-
-	 <div >
+<div >
 			 <h4 >New Contact</h4>
 				<contact-form
 					[contact]="contact"
+					[hobbies] = "checkBoxHobbies"
 					(onContactSave) = "addContact($event)">
 				</contact-form>
 		</div>

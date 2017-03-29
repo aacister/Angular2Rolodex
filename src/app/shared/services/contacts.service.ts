@@ -53,7 +53,7 @@ export class ContactsService {
   deleteContact(id: number | string) {
     this.apiService.delete('/contacts/' + id).subscribe(response => {
       this.dataStore.contacts.forEach((c, i) => {
-        if (c.id === id) {
+        if (c._id === id) {
           this.dataStore.contacts.splice(i, 1);
         }
       });
@@ -71,16 +71,28 @@ export class ContactsService {
   }
 
   updateContact(contact: Contact) {
-    this.apiService.put('/contacts/' + contact.id, { contact: contact })
+    this.apiService.put('/contacts/' + contact._id, { contact: contact })
       .subscribe(data => {
       this.dataStore.contacts.forEach((c, i) => {
-        if (c.id === data._id) {
+        if (c._id === data._id) {
           this.dataStore.contacts[i] = data;
         }
       });
 
       this._contacts.next(Object.assign({}, this.dataStore).contacts);
     }, error => console.log('Could not update contact.'));
+  }
+
+  deleteHobbies(id: number | string) {
+    this.apiService.delete('/contacts/' + id + '/hobbies').subscribe(response => {
+      this.dataStore.contacts.forEach((c, i) => {
+        if (c._id === id) {
+          this.dataStore.contacts[i].hobbies = [];
+        }
+      });
+
+      this._contacts.next(Object.assign({}, this.dataStore).contacts);
+    }, error => console.log(error));
   }
 
   addHobby(contactId: string | number, hobby: Hobby) {
@@ -100,7 +112,7 @@ export class ContactsService {
       .subscribe(data => {
       let notFound = true;
       this.dataStore.contacts.forEach((item, index) =>{
-        if(item.id === data.id){
+        if(item._id === data._id){
           this.dataStore.contacts[index] = data;
           notFound = false;
         }
@@ -114,5 +126,6 @@ export class ContactsService {
 
     }, error => console.log(error));
   }
+
 
 }
